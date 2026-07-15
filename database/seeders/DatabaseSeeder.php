@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             [
                 'description' => 'Consulta general de odontología',
                 'duration_minutes' => 60,
-                'price' => , // Modificar según corresponda
+                'price' => 0, // Modificar según corresponda
                 'is_active' => true,
                 'sort_order' => 1,
             ]
