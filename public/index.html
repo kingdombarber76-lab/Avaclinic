@@ -144,8 +144,7 @@ Domingos cerrado.
         </div>
         <div>
           <h4>Reservar</h4>
-          <p style="font-size:.83rem;color:var(--ink2);line-height:1.7;margin-bottom:14px">Sin llamadas, sin esperas —
-  confirmá tu lugar en segundos.</p>
+          <p style="font-size:.83rem;color:var(--ink2);line-height:1.7;margin-bottom:14px">Reservá tu consulta online de forma rápida y sencilla.</p>
           <button class="btn btn-dark btn-sm" onclick="openModal()">Reservar Turno</button>
         </div>
       </div>
@@ -272,11 +271,11 @@ Domingos cerrado.
   /* ════════════════════════════════════════════════════════
       BOOKING — máquina de estados (4 pasos)
   ══════════════════════════════════════════════════════ */
-  const ST = { paso:1, svcId:'corte', fecha:hoyIso(), hora:null };
+  const ST = { paso:1, svcId:'consulta', fecha:hoyIso(), hora:null };
   const LABELS = ['Servicio','Fecha','Hora','Tus Datos'];
 
   function openModal(svcId) {
-    ST.paso = 1; ST.svcId = svcId || 'corte'; ST.fecha = hoyIso(); ST.hora = null;
+    ST.paso = 1; ST.svcId = svcId || 'consulta'; ST.fecha = hoyIso(); ST.hora = null;
     document.getElementById('stepper').style.display = '';
     document.getElementById('modalFtr').style.display = '';
     document.getElementById('overlay').classList.add('open');
@@ -377,13 +376,12 @@ Domingos cerrado.
       <div class="sum-row"><span>Servicio</span><strong>${svc.nombre}</strong></div>
       <div class="sum-row"><span>Fecha</span><strong>${dateLabel(ST.fecha)}</strong></div>
       <div class="sum-row"><span>Hora</span><strong>${ST.hora}</strong></div>
-      <div class="sum-row"><span>Total estimado</span><strong>${fmtGs(svc.precio)}</strong></div>
-    </div>
+      
     <div class="field"><label>Nombre completo *</label><input id="fNombre" type="text" placeholder="Tu nombre" autocomplete="name"></div>
     <div class="field-row">
       <div class="field"><label>Teléfono *</label><input id="fTel" type="tel" placeholder="0981 ..." autocomplete="tel"></div>
     </div>
-    <div class="field"><label>Nota para el barbero (opcional)</label><textarea id="fNota" placeholder="Ej: degradado suave, no usar máquina al tope…"></textarea></div>`;
+    <div class="field"><label>Motivo de la consulta (opcional)</label><textarea id="fNota" placeholder="Ej: degradado suave, no usar máquina al tope…"></textarea></div>`;
   document.getElementById('fNombre').addEventListener('input', updateButtons);
   document.getElementById('fTel').addEventListener('input', updateButtons);
 }
@@ -480,22 +478,21 @@ Domingos cerrado.
     document.getElementById('modalFtr').style.display = 'none';
     const primer  = nombre.split(' ')[0];
     const noNum   = 'B-' + String(100 + getTurnos().length).padStart(3,'0');
-    const waMsg   = encodeURIComponent(`Hola Kingdom Barber Shop, reservé un turno online:\n📋 *${svc.nombre}*\n📅
+    const waMsg   = encodeURIComponent(`Hola AVA Clinic Odontología, reservé un turno online:\n📋 *${svc.nombre}*\n📅
   ${dateLabel(turno.fecha)} a las ${turno.hora}\n👤 ${nombre}\n📞 ${turno.tel}${turno.nota ? '\n📝 '+turno.nota : ''}`);
     const waUrl   = `https://wa.me/${CFG.negocio.whatsapp}?text=${waMsg}`;
     document.getElementById('modalBody').innerHTML = `
       <div class="confirm">
         <div class="confirm-icon">✓</div>
         <h3>¡Listo, ${primer}!</h3>
-        <p>Tu turno quedó registrado. Te esperamos en el salón.</p>
+        <p>Tu turno quedó registrado. Te esperamos en el consultorio.</p>
         <div class="bk-ticket">
           <p class="bk-no">Reserva ${noNum}</p>
           <p class="bk-svc">${svc.nombre}</p>
           <div class="bk-row"><span>Fecha</span><strong>${dateLabel(turno.fecha)}</strong></div>
           <div class="bk-row"><span>Hora</span><strong>${turno.hora}</strong></div>
           <div class="bk-row"><span>Duración</span><strong>${svc.dur} min</strong></div>
-          <div class="bk-row"><span>Total estimado</span><strong>${fmtGs(svc.precio)}</strong></div>
-        </div>
+
         <a class="wa-btn" href="${waUrl}" target="_blank" rel="noopener">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472
   14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94
