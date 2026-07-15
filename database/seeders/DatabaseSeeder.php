@@ -17,13 +17,13 @@ class DatabaseSeeder extends Seeder
         // ==========================
         $tenant = Tenant::firstOrCreate(
             [
-                'slug' => 'kingdom-barber-shop'
+                'slug' => 'ava-clinic-odontologia'
             ],
             [
-                'name' => 'Kingdom Barber Shop',
-                'phone' => '+595984863912',
-                'whatsapp' => '+595984863912',
-                'address' => 'Av. Japón, Encarnación 070121',
+                'name' => 'AVA Clinic Odontología',
+                'phone' => '+595992814554',
+                'whatsapp' => '+595992814554',
+                'address' => 'J5H6+HRX, Encarnación 070125',
                 'city' => 'Encarnación',
                 'country' => 'Paraguay',
                 'is_active' => true,
@@ -35,62 +35,32 @@ class DatabaseSeeder extends Seeder
         // ==========================
         $user = User::firstOrCreate(
             [
-                'email' => 'kingdom@kingdombarbershop.com' // ← cambiá por el email real del dueño
+                'email' => 'admin@avaclinic.com'
             ],
             [
                 'tenant_id' => $tenant->id,
-                'name' => 'Kingdom Barber Shop',
-                'password' => bcrypt('123456'), // ← cambiar después del primer login
+                'name' => 'AVA Clinic Odontología',
+                'password' => bcrypt('123456'), // Cambiar luego del primer inicio de sesión
                 'role' => 'owner',
                 'is_active' => true,
             ]
         );
 
         // ==========================
-        // Servicios
+        // Servicio
         // ==========================
 
         Service::firstOrCreate(
-            ['tenant_id' => $tenant->id, 'name' => 'Corte de pelo'],
             [
-                'description' => '',
+                'tenant_id' => $tenant->id,
+                'name' => 'Consulta Odontológica'
+            ],
+            [
+                'description' => 'Consulta general de odontología',
                 'duration_minutes' => 60,
-                'price' => 50000,
+                'price' => , // Modificar según corresponda
                 'is_active' => true,
                 'sort_order' => 1,
-            ]
-        );
-
-        Service::firstOrCreate(
-            ['tenant_id' => $tenant->id, 'name' => 'Servicio completo'],
-            [
-                'description' => 'Corte, ceja y barba',
-                'duration_minutes' => 60,
-                'price' => 90000,
-                'is_active' => true,
-                'sort_order' => 2,
-            ]
-        );
-
-        Service::firstOrCreate(
-            ['tenant_id' => $tenant->id, 'name' => 'Corte de niño'],
-            [
-                'description' => '',
-                'duration_minutes' => 60,
-                'price' => 50000,
-                'is_active' => true,
-                'sort_order' => 3,
-            ]
-        );
-
-        Service::firstOrCreate(
-            ['tenant_id' => $tenant->id, 'name' => 'Corte fade + freestyle'],
-            [
-                'description' => '',
-                'duration_minutes' => 60,
-                'price' => 60000,
-                'is_active' => true,
-                'sort_order' => 4,
             ]
         );
 
@@ -100,13 +70,13 @@ class DatabaseSeeder extends Seeder
         // ==========================
 
         $horarios = [
-            0 => [],                          // domingo: cerrado
-            1 => [['14:00', '19:00']],        // lunes: solo tarde
-            2 => [['10:00', '19:00']],        // martes
-            3 => [['10:00', '19:00']],        // miércoles
-            4 => [['10:00', '19:00']],        // jueves
-            5 => [['10:00', '19:00']],        // viernes
-            6 => [['10:00', '19:00']],        // sábado
+            0 => [],                         // Domingo: cerrado
+            1 => [['08:00', '18:00']],       // Lunes
+            2 => [['08:00', '18:00']],       // Martes
+            3 => [['08:00', '18:00']],       // Miércoles
+            4 => [['08:00', '18:00']],       // Jueves
+            5 => [['08:00', '18:00']],       // Viernes
+            6 => [['09:00', '17:30']],       // Sábado
         ];
 
         foreach ($horarios as $day => $rangos) {
@@ -128,14 +98,16 @@ class DatabaseSeeder extends Seeder
 
         echo PHP_EOL;
         echo "======================================" . PHP_EOL;
-        echo " Kingdom Barber Shop inicializado" . PHP_EOL;
+        echo " AVA Clinic Odontología inicializado" . PHP_EOL;
         echo "======================================" . PHP_EOL;
         echo "Tenant ID: {$tenant->id}" . PHP_EOL;
-        echo "User (barber) ID: {$user->id}" . PHP_EOL;
+        echo "User (odontólogo) ID: {$user->id}" . PHP_EOL;
         echo "Servicios:" . PHP_EOL;
-        foreach (Service::where('tenant_id', $tenant->id)->get(['id','name']) as $s) {
+
+        foreach (Service::where('tenant_id', $tenant->id)->get(['id', 'name']) as $s) {
             echo "  - {$s->id}: {$s->name}" . PHP_EOL;
         }
+
         echo "======================================" . PHP_EOL;
     }
 }
