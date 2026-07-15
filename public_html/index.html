@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="AVA Clinic Odontología — Reservá tu consulta odontológica online en Encarnación, Paraguay.">
-  <title>AVA Clinic Odontología</title>
+  <meta name="description" content="AVA Clinic Odontología — Reservá tu turno online en Encarnación, Paraguay. Atención profesional para tu salud bucal.">
+  <title>AVA Clinic — Odontología</title>
   <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -14,8 +14,8 @@
   <header class="hdr">
     <div class="wrap hdr-inner">
       <div class="brand">
-        <span class="brand-name">AVA Clinic Odontología</span>
-        <span class="brand-sub">Odontologia · Encarnación</span>
+        <span class="brand-name">AVA Clinic</span>
+        <span class="brand-sub">Odontología · Encarnación</span>
       </div>
       <nav id="nav">
         <a href="#servicios">Servicios</a>
@@ -38,19 +38,17 @@
       <div class="wrap hero-inner">
         <div>
           <p class="hero-eyebrow">Encarnación, Paraguay</p>
-          <h1>Tu sonrisa<br><em>en las mejores manos.</em></h1>
-        <p class="hero-sub">
-Reservá tu consulta odontológica online de forma rápida y sencilla.
-Atención profesional para toda la familia.
-</p>
+          <h1>Tu mejor sonrisa,<br><em>finalmente.</em></h1>
+          <p class="hero-sub">Atención odontológica profesional, ambiente relajado y turnos online sin esperas. Reservá en segundos y cuidá tu salud bucal.</p>
           <div class="status-row">
             <span class="status-dot" id="statusDot"></span>
             <span id="statusTxt"></span>
             <span>·</span>
-            <a href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDcxMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">Ver en Maps</a>
+            <a href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm" target="_blank"
+  rel="noopener" style="color:var(--ink3)">Av. Japón, Encarnación</a>
           </div>
           <div class="hero-cta">
-            <button onclick="abrirModalTurno()">Reservar Turno</button>
+            <button class="btn btn-dark btn-lg" onclick="openModal()">Reservar Turno</button>
             <a href="#servicios" class="btn btn-outline btn-lg">Ver Servicios</a>
           </div>
           <div class="hero-stats">
@@ -73,9 +71,9 @@ Atención profesional para toda la familia.
     <section class="sec" id="servicios">
       <div class="wrap">
         <div class="sec-head reveal">
-          <p class="eyebrow">Consultas</p>
-          <h2>Reservá tu consulta</h2>
-<p>Agendá tu consulta odontológica de forma rápida y segura.</p>
+          <p class="eyebrow">Servicios y Precios</p>
+          <h2>¿Qué necesitás hoy?</h2>
+          <p>Cada turno incluye atención personalizada de principio a fin. Los precios indicados son de referencia.</p>
         </div>
         <div class="svc-grid reveal" id="svcGrid"></div>
       </div>
@@ -91,9 +89,8 @@ Atención profesional para toda la familia.
               <h2>¿Cuándo te esperamos?</h2>
             </div>
             <div class="sch-table" id="schTable"></div>
-            <p class="sch-note">
-Seleccioná el horario que mejor se adapte a tu disponibilidad.
-</p>
+            <p class="sch-note">El día actual aparece resaltado. Los turnos se calculan automáticamente según el horario
+  de apertura de la clínica.</p>
           </div>
           <div class="reveal" style="padding-top:8px" id="ubicacion">
             <p class="eyebrow">Ubicación</p>
@@ -101,17 +98,16 @@ Seleccioná el horario que mejor se adapte a tu disponibilidad.
               Encontranos en Encarnación
             </h2>
             <p style="font-size:.88rem;color:var(--ink2);line-height:1.7;margin-bottom:18px">
-              <br>Fácil acceso con espacio de espera cómodo.
+              Av. Japón, Encarnación 070121, Paraguay.<br>Fácil acceso con espacio de espera cómodo.
             </p>
             <a class="btn btn-outline btn-sm"
-  href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDcxMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+  href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm" target="_blank" rel="noopener">
               Ver en Google Maps →
             </a>
             <div class="info-box">
-              <strong>Horario de atención</strong>
-              Lunes a viernes de 08:00 a 18:00.
-Sábados de 09:00 a 17:30.
-Domingos cerrado.
+              <strong>Lunes sólo tarde</strong>
+              Los lunes la clínica abre únicamente de 14:00 a 19:00. El resto de la semana (mar–sáb) atendemos de 10:00 a
+  19:00 corrido.
             </div>
           </div>
         </div>
@@ -125,11 +121,11 @@ Domingos cerrado.
     <div class="wrap">
       <div class="ftr-grid">
         <div>
-          <span class="ftr-brand-name">AVA Clinic odontologia</span>
-          <span class="ftr-brand-sub">Odontologia</span>
-          <p class="ftr-desc">Atención odontológica profesional en Encarnación.</p>
+          <span class="ftr-brand-name">AVA Clinic</span>
+          <span class="ftr-brand-sub">Odontología</span>
+          <p class="ftr-desc">Atención odontológica integral y profesional en Encarnación.</p>
           <div class="social-links">
-            <a href="https://www.instagram.com/odonto_avaclinic/" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="Instagram">IG</a>
           </div>
         </div>
         <div>
@@ -138,18 +134,19 @@ Domingos cerrado.
         </div>
         <div>
           <h4>Ubicación</h4>
-          <address class="ftr-address"><br>Encarnación<br>Paraguay</address>
-          <a class="ftr-link" href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDcxMi4wIKXMDSoASAFQAw%3D%3D"
+          <address class="ftr-address">Av. Japón<br>Encarnación 070121<br>Paraguay</address>
+          <a class="ftr-link" href="https://www.google.com/maps/place/AVA+Clinic+odontologia/@-27.3709311,-55.8385872,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x9457c1e997e12c87:0x2641abb64526bf03!8m2!3d-27.3709311!4d-55.8379435!16s%2Fg%2F11tf_9nbnm"
   target="_blank" rel="noopener">Ver en Google Maps →</a>
         </div>
         <div>
           <h4>Reservar</h4>
-          <p style="font-size:.83rem;color:var(--ink2);line-height:1.7;margin-bottom:14px">Reservá tu consulta online de forma rápida y sencilla.</p>
+          <p style="font-size:.83rem;color:var(--ink2);line-height:1.7;margin-bottom:14px">Sin llamadas, sin esperas —
+  confirmá tu lugar en segundos.</p>
           <button class="btn btn-dark btn-sm" onclick="openModal()">Reservar Turno</button>
         </div>
       </div>
       <div class="ftr-bottom">
-        <p>© <span id="yr"></span> AVA Clinic odontologia</p>
+        <p>© <span id="yr"></span> AVA Clinic Odontología</p>
         <div class="ftr-bottom-links">
           <a href="#inicio">Inicio</a>
         </div>
@@ -376,12 +373,13 @@ Domingos cerrado.
       <div class="sum-row"><span>Servicio</span><strong>${svc.nombre}</strong></div>
       <div class="sum-row"><span>Fecha</span><strong>${dateLabel(ST.fecha)}</strong></div>
       <div class="sum-row"><span>Hora</span><strong>${ST.hora}</strong></div>
-      
+      <div class="sum-row"><span>Total estimado</span><strong>${fmtGs(svc.precio)}</strong></div>
+    </div>
     <div class="field"><label>Nombre completo *</label><input id="fNombre" type="text" placeholder="Tu nombre" autocomplete="name"></div>
     <div class="field-row">
       <div class="field"><label>Teléfono *</label><input id="fTel" type="tel" placeholder="0981 ..." autocomplete="tel"></div>
     </div>
-    <div class="field"><label>Motivo de la consulta (opcional)</label><textarea id="fNota" placeholder="Ej: degradado suave, no usar máquina al tope…"></textarea></div>`;
+    <div class="field"><label>Nota para el odontólogo (opcional)</label><textarea id="fNota" placeholder="Ej: Primera consulta, dolor de muela, limpieza..."></textarea></div>`;
   document.getElementById('fNombre').addEventListener('input', updateButtons);
   document.getElementById('fTel').addEventListener('input', updateButtons);
 }
@@ -477,22 +475,23 @@ Domingos cerrado.
     document.getElementById('stepper').style.display  = 'none';
     document.getElementById('modalFtr').style.display = 'none';
     const primer  = nombre.split(' ')[0];
-    const noNum   = 'B-' + String(100 + getTurnos().length).padStart(3,'0');
-    const waMsg   = encodeURIComponent(`Hola AVA Clinic Odontología, reservé un turno online:\n📋 *${svc.nombre}*\n📅
+    const noNum   = 'A-' + String(100 + getTurnos().length).padStart(3,'0');
+    const waMsg   = encodeURIComponent(`Hola AVA Clinic, reservé un turno online:\n📋 *${svc.nombre}*\n📅
   ${dateLabel(turno.fecha)} a las ${turno.hora}\n👤 ${nombre}\n📞 ${turno.tel}${turno.nota ? '\n📝 '+turno.nota : ''}`);
     const waUrl   = `https://wa.me/${CFG.negocio.whatsapp}?text=${waMsg}`;
     document.getElementById('modalBody').innerHTML = `
       <div class="confirm">
         <div class="confirm-icon">✓</div>
         <h3>¡Listo, ${primer}!</h3>
-        <p>Tu turno quedó registrado. Te esperamos en el consultorio.</p>
+        <p>Tu turno quedó registrado. Te esperamos en la clínica.</p>
         <div class="bk-ticket">
           <p class="bk-no">Reserva ${noNum}</p>
           <p class="bk-svc">${svc.nombre}</p>
           <div class="bk-row"><span>Fecha</span><strong>${dateLabel(turno.fecha)}</strong></div>
           <div class="bk-row"><span>Hora</span><strong>${turno.hora}</strong></div>
           <div class="bk-row"><span>Duración</span><strong>${svc.dur} min</strong></div>
-
+          <div class="bk-row"><span>Total estimado</span><strong>${fmtGs(svc.precio)}</strong></div>
+        </div>
         <a class="wa-btn" href="${waUrl}" target="_blank" rel="noopener">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472
   14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94
