@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════
-     config.js — Kingdom Barber Shop
+     config.js — AVA Clinic Odontología
      ──────────────────────────────────────────────────
      Panel de control centralizado. Editá este archivo
      para actualizar precios, horarios, servicios y PIN
@@ -10,27 +10,13 @@
 
     negocio: {
 
-  nombre:    'Kingdom Barber Shop',
-
-  subtitulo: 'Barbería',
-
-  ciudad:    'Encarnación, Paraguay',
-
-  direccion: 'Av. Japón, Encarnación 070121',
-
-  telefono:  '+595 984 863912',
-
-  whatsapp:  '595984863912',
-
-  instagram: '#',
-
-  facebook:  '#',
-
-  mapsUrl:   'https://www.google.com/maps/search/?api=1&query=J4WM%2B8R+Encarnaci%C3%B3n',
-
-  rating:    null,
-
-  resenas:   null,
+nombre:    'AVA Clinic Odontología',
+subtitulo: 'Clínica Odontológica',
+ciudad:    'Encarnación, Paraguay',
+direccion: 'J5H6+HRX, Encarnación 070125',
+telefono:  '+595 992 814554',
+whatsapp:  '595992814554',
+mapsUrl:   'https://www.google.com/maps/search/?api=1&query=J5H6%2BHRX+Encarnaci%C3%B3n',
     },
 
     // PIN de acceso a la agenda privada del barbero
@@ -41,72 +27,42 @@
 
     // Duración mínima de cada bloque de agenda (minutos)
 
-    bloqueMin: 30, // Note: changed from 60 to 30 to resemble Fabián version
+  bloqueMin: 60, // La consulta dura 1 hora
 
-    /* Horarios por día de la semana
+/* Horarios por día de la semana
+0 = domingo … 6 = sábado
+*/
 
-   0 = domingo … 6 = sábado
+horarios: {
 
-   Cada rango: ['HH:MM apertura', 'HH:MM cierre']
+  0: [],                         // Domingo: cerrado
 
-   Array vacío = cerrado ese día */
-    horarios: {
+  1: [['08:00', '18:00']],       // Lunes
 
-  0: [],                                        // domingo:  cerrado
+  2: [['08:00', '18:00']],       // Martes
 
-  1: [['14:00', '19:00']],                      // lunes:    sólo tarde
+  3: [['08:00', '18:00']],       // Miércoles
 
-  2: [['10:00', '19:00']],                      // martes
+  4: [['08:00', '18:00']],       // Jueves
 
-  3: [['10:00', '19:00']],                      // miércoles
+  5: [['08:00', '18:00']],       // Viernes
 
-  4: [['10:00', '19:00']],                      // jueves
+  6: [['09:00', '17:30']],       // Sábado
+},
 
-  5: [['10:00', '19:00']],                      // viernes
+/* Servicios */
 
-  6: [['10:00', '19:00']],                      // sábado
-    },
-
-    /* Servicios
-
-   id        → identificador interno (no cambiar)
-
-   nombre    → se muestra al cliente
-
-   desc      → descripción breve
-
-   precio    → en guaraníes
-
-   precioOld → precio tachado (opcional, para mostrar descuento)
-
-   dur       → duración en minutos (debe ser múltiplo de bloqueMin)
-
-   destacado → true = card oscura "más elegido" */
-    servicios: [
+servicios: [
 
   {
 
-    id: 'corte',
+    id: 'consulta',
 
-    nombre: 'Corte de pelo',
+    nombre: 'Consulta Odontológica',
 
-    desc: 'Corte de precisión adaptado a tu estilo.',
+    desc: 'Consulta y evaluación odontológica.',
 
-    precio: 50000,
-
-    dur: 60,
-
-  },
-
-  {
-
-    id: 'completo',
-
-    nombre: 'Servicio completo',
-
-    desc: 'Corte, ceja y barba en una sola sesión.',
-
-    precio: 90000,
+    precio: 0,
 
     precioOld: null,
 
@@ -116,36 +72,7 @@
 
   },
 
-  {
-
-    id: 'ninio',
-
-    nombre: 'Corte de niño',
-
-    desc: 'Corte pensado para los más chicos.',
-
-    precio: 50000,
-
-    dur: 60,
-
-  },
-
-  {
-
-    id: 'fade',
-
-    nombre: 'Corte fade + freestyle',
-
-    desc: 'Degradado con diseño personalizado.',
-
-    precio: 60000,
-
-    dur: 60,
-
-  },
-    ],
-
-  };
+],
 
   /* ══════════════════════════════════════════════════
 
@@ -182,11 +109,11 @@
 
   const dateShort  = iso => { const d=fromIso(iso); return `${DIAS_C[d.getDay()]}${d.getDate()}`; };
 
-  const API_BASE = 'https://kingdombarber-8x9bs.sevalla.app/api';
+  const API_BASE = 'https://avaclinic-amze7.sevalla.app/api';
 
   const DEFAULT_BARBER_ID = 1;
 
-  const SERVICE_ID_MAP = { corte: 1, completo: 2, ninio: 3, fade: 4 };
+  const SERVICE_ID_MAP = {consulta: 1};
 
   const jsonHeaders = { 'Content-Type': 'application/json' };
 
