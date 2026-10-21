@@ -26,16 +26,17 @@ WORKDIR /var/www/html
 COPY --from=frontend /app/public/build ./public/build
 COPY . .
 
-# CORRECCIÓN DE APACHE: Apuntar el DocumentRoot a /public tanto en vhost como en la config global
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf \
-    && sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/apache2.conf \
-    && mkdir -p storage bootstrap/cache \
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+RUN mkdir -p storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# Sevalla/Render injects PORT at runtime; Apache must listen on that port.
+# Forzar la reconfiguración de rutas en tiempo de ejecución para saltarse la caché de Render
 RUN printf '%s\n' \
     '#!/bin/sh' \
     'set -e' \
+    'sed -i "s|/var/www/html|/var/www/html/public|g" /etc/apache2/sites-available/*.conf' \
+    'sed -i "s|/var/www/html|/var/www/html/public|g" /etc/apache2/apache2.conf' \
     'port="${PORT:-8080}"' \
     'sed -i "s/Listen 80/Listen ${port}/" /etc/apache2/ports.conf' \
     'exec apache2-foreground' \
