@@ -73,7 +73,7 @@ const getSvc     = id => CFG.servicios.find(s => s.id === id) || CFG.servicios[0
 const dateLabel  = iso => { const d=fromIso(iso); return `${capitalize(DIAS[d.getDay()])} ${d.getDate()} de ${MESES[d.getMonth()]}`; };
 const dateShort  = iso => { const d=fromIso(iso); return `${DIAS_C[d.getDay()]} ${d.getDate()}`; };
 
-const API_BASE = 'https://avaclinic-amze7.sevalla.app/api';
+const API_BASE = '/api';
 const DEFAULT_BARBER_ID = 1;
 const SERVICE_ID_MAP = { consulta: 1 };
 const jsonHeaders = { 'Content-Type': 'application/json' };
