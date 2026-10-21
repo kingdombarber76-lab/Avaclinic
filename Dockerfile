@@ -13,7 +13,8 @@ RUN npm run build
 # Stage 2: aplicación Laravel
 FROM php:8.4-apache AS app
 
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public \
+    MYSQL_ATTR_SSL_CA=/var/www/html/certs/aiven-ca.pem
 
 RUN apt-get update && apt-get install -y \
     git curl libpng-dev libonig-dev libxml2-dev zip unzip libpq-dev \
@@ -35,17 +36,18 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN mkdir -p storage bootstrap/cache \
+RUN mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cache \
     && chown -R www-data:www-data /var/www/html \
     && chmod -R 775 storage bootstrap/cache
 
-# Solo el puerto, en runtime
+# Script de arranque: puerto de Render + migraciones
 RUN printf '%s\n' \
     '#!/bin/sh' \
-    'set -e' \
     'port="${PORT:-8080}"' \
     'sed -i "s/Listen 80/Listen ${port}/" /etc/apache2/ports.conf' \
     'sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${port}>/" /etc/apache2/sites-available/*.conf' \
+    'php artisan config:clear' \
+    'php artisan migrate --force || echo "AVISO: la migracion fallo, revisa la conexion a la DB"' \
     'exec apache2-foreground' \
     > /usr/local/bin/start.sh \
     && chmod +x /usr/local/bin/start.sh
