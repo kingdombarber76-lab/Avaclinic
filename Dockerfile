@@ -1,3 +1,16 @@
+# Stage 1: compilar assets de Vite
+FROM node:22-alpine AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY vite.config.js ./
+COPY resources ./resources
+RUN npm run build
+
+# Stage 2: aplicación Laravel
 FROM php:8.4-apache AS app
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
