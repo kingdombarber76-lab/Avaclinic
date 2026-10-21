@@ -26,13 +26,13 @@ WORKDIR /var/www/html
 COPY --from=frontend /app/public/build ./public/build
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
+# CORRECCIÓN DE APACHE: Apuntar el DocumentRoot a /public tanto en vhost como en la config global
+RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/*.conf \
+    && sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/apache2.conf \
     && mkdir -p storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# Sevalla injects PORT at runtime; Apache must listen on that port.
+# Sevalla/Render injects PORT at runtime; Apache must listen on that port.
 RUN printf '%s\n' \
     '#!/bin/sh' \
     'set -e' \
